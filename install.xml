@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <name>Blookbook</name>
+  <code><![CDATA[blookbook]]></code>
+  <version>1.0.0</version>
+  <author>Bariklabs</author>
+  <link>https://bariklabs.com</link>
+  <file path="admin/language/*/common/column_left.php">
+        <operation error="skip">
+            <search trim="true"><![CDATA[// Text]]></search>
+            <add position="after"><![CDATA[
+            $_['text_blookbook']   = 'Blookbook';
+            ]]></add>
+        </operation>
+    </file>
+    <file path="admin/controller/common/column_left.php">
+        <operation error="skip">
+            <search><![CDATA[$hpwd = array();]]></search>
+            <add position="after"><![CDATA[
+            if ($this->user->hasPermission('access', 'extension/module/blookbook')) {
+                $hpwd[] = array(
+                  'name'     => $this->language->get('text_blookbook'),
+                  'href'     => $this->url->link('extension/module/blookbook', 'token=' . $this->session->data['token'], true),
+                  'children' => array()
+                );
+            }
+            ]]></add>
+        </operation>
+    </file>
+</modification>
