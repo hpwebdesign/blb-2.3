@@ -45,8 +45,10 @@
             <div class="form-group">
               <label class="col-sm-2 control-label"><?php echo $entry_status; ?></label>
               <div class="col-sm-10">
-                <input type="checkbox" name="blookbook_status" id="input-status" data-control="checkbox" value="1" data-off-label="<?php echo $text_disabled; ?>" data-on-label="<?php echo $text_enabled; ?>" <?php if ($blookbook_status) { ?>checked="checked"<?php } ?>/>
-               
+                <select name="blookbook_status" id="input-status" class="form-control">
+                  <option value="1" <?php if ($blookbook_status == 1) { ?>selected="selected"<?php } ?>><?php echo $text_enabled; ?></option>
+                  <option value="0" <?php if ($blookbook_status == 0) { ?>selected="selected"<?php } ?>><?php echo $text_disabled; ?></option>
+                </select>
               </div>
             </div>
 
@@ -289,10 +291,6 @@ $('#blb-tabs a:first').tab('show');
 <script>
 (function ($) {
   "use strict";
-  if ($.fn.checkboxpicker) {
-    $('[data-control=checkbox]').checkboxpicker({onClass: 'btn-info'});
-  }
-  $('.btn-group .btn').addClass('btn-sm');
   /* ── Config ───────────────────────────────────────────────── */
   var MAX_HOTSPOTS   = 5;
   var ACTION_SAVE    = "<?php echo $action_save; ?>";

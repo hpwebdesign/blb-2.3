@@ -75,7 +75,7 @@
       </button>
 
       <div id="<?php echo $popup_id; ?>" class="savvy-lookbook__popup<?php echo $popup_class; ?>" role="dialog" aria-label="<?php echo htmlspecialchars($hs['name']); ?>">
-        <button class="savvy-lookbook__close" type="button" aria-label="Close"></button>
+        <button class="savvy-lookbook__close" type="button" aria-label="Close">X</button>
         <div class="savvy-lookbook__card">
           <a class="savvy-lookbook__thumb" href="<?php echo $hs['url']; ?>">
             <img src="<?php echo $hs['thumb']; ?>" alt="<?php echo htmlspecialchars($hs['name']); ?>" loading="lazy">

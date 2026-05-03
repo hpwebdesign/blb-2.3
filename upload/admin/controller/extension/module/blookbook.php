@@ -23,7 +23,6 @@ class ControllerExtensionModuleBlookbook extends Controller {
 
         // ── Document ─────────────────────────────────────────────────────────
         $this->document->setTitle($this->language->get('heading_title'));
-        $this->document->addScript('view/javascript/bootstrap/js/bootstrap-checkbox.min.js');
         // ── Breadcrumbs ──────────────────────────────────────────────────────
         $data['breadcrumbs'] = array(
             array(
