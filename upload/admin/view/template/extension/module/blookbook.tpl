@@ -52,6 +52,9 @@
               </div>
             </div>
 
+            <!-- Version (hidden — saved to DB, consumed by catalog frontend) -->
+            <input type="hidden" name="blookbook_version" value="<?php echo htmlspecialchars($version); ?>">
+
             <!-- Button URL -->
             <div class="form-group">
               <label class="col-sm-2 control-label"><?php echo $entry_btn_url; ?>

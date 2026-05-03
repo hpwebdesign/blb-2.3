@@ -1,6 +1,8 @@
 <?php
 class ControllerExtensionModuleBlookbook extends Controller {
 
+    private $version = '1.0.0.0';
+
     public function __construct($registry) {
         parent::__construct($registry);
         $this->load->language('extension/module/blookbook');
@@ -14,6 +16,8 @@ class ControllerExtensionModuleBlookbook extends Controller {
     // ── Main setting page ────────────────────────────────────────────────────
 
     public function index() {
+        $data['version'] = $this->version;
+
         $this->load->model('setting/setting');
         $this->load->model('localisation/language');
         $this->load->model('tool/image');
@@ -240,6 +244,10 @@ class ControllerExtensionModuleBlookbook extends Controller {
         }
 
         $this->load->model('setting/setting');
+
+        // Always persist the version from code — never trust POST for this.
+        $post['blookbook_version'] = $this->version;
+
         $this->model_setting_setting->editSetting('blookbook', $post);
 
         $this->response->setOutput(json_encode(array('success' => $this->language->get('text_success'))));

@@ -16,7 +16,7 @@ class ControllerExtensionModuleBlookbook extends Controller {
         $this->load->model('catalog/product');
         // ── Load raw settings ────────────────────────────────────────────────
         // $raw = $this->config->get($code);
-       
+
             // fallback: read directly from oc_setting
             $q = $this->db->query(
                 "SELECT `key`, `value` FROM `" . DB_PREFIX . "setting`
@@ -26,13 +26,15 @@ class ControllerExtensionModuleBlookbook extends Controller {
             foreach ($q->rows as $row) {
                 $raw[$row['key']] = $row['value'];
             }
-        
+
 
         // Status check
         $status = isset($raw[$code . '_status']) ? (int)$raw[$code . '_status'] : 0;
         if (!$status) {
             return '';
         }
+
+        $version = $this->config->get('blookbook_version');
 
         // ── Detect active language ───────────────────────────────────────────
         $lang_id = (int)$this->config->get('config_language_id');
@@ -112,8 +114,8 @@ class ControllerExtensionModuleBlookbook extends Controller {
 
         // ── CSS / JS URLs ────────────────────────────────────────────────────
         $base = $this->config->get('config_ssl') ? HTTPS_SERVER : HTTP_SERVER;
-        $data['css_url'] = $base . 'catalog/view/javascript/blookbook.css';
-        $data['js_url']  = $base . 'catalog/view/javascript/blookbook.js';
+        $data['css_url'] = $base . 'catalog/view/javascript/blookbook.css?v='.$version;
+        $data['js_url']  = $base . 'catalog/view/javascript/blookbook.js?v='.$version;
 
         return $this->render('extension/module/blookbook', $data);
     }
